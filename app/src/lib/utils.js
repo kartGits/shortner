@@ -1,1 +1,2 @@
-export const getShortLink = (shortSlug) => `http://localhost:5173/${shortSlug}`
+import { HOST } from "$env/static/private"
+export const getShortLink = (shortSlug) => ${HOST}/${shortSlug}
