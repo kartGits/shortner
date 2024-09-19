@@ -1,7 +1,7 @@
 <script>
   import { fade } from "svelte/transition"
   import { getShortLink } from "$lib/utils"
-  export let data, form
+  export let data, form = {}
   let copied
 
   $: {
@@ -10,7 +10,7 @@
     }
   }
 
-  const copy = (text)   => {
+  const copy = (text) => {
     navigator.clipboard.writeText(text)
     copied = true
   }
@@ -23,9 +23,7 @@
   };
 </script>
 
-
-
-<article>
+<article style="max-width: auto; margin: 0 auto;">
   <h1>Shorten Your Link</h1>
   <form action="?/createShortLink" method="post">
     <label for="url">
@@ -38,6 +36,7 @@
         placeholder="http://.."
         spellcheck="false"
         required
+        style="width: 100%;"
       />
     </label>
 
@@ -71,7 +70,7 @@
       </tr>
     </thead>
     <tbody>
-      {#each data.top10Links as link, i}
+      {#each data.top10Links.slice(0,10) as link, i}
         <tr>
           <td>{i + 1}</td>
           <td>{link.url}</td>
